@@ -13,10 +13,7 @@ namespace Kata
             }
 
             var nums = userInput.Split(",").Select(int.Parse).ToList();
-            if (nums.Count == 1)
-                return nums.First();
-            
-            return nums.First() + nums.Last();
+            return nums.Sum();
         }
     }
 }
