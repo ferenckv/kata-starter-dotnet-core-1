@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 
 namespace Kata
@@ -12,9 +13,7 @@ namespace Kata
             }
 
             var nums = userInput.Split(",").Select(int.Parse).ToArray();
-            if (nums.Count() == 1) return nums[0];
-            
-            return nums[0] + nums[1];
+            return nums.Sum();
         }
     }
 }
