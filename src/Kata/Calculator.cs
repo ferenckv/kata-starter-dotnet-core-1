@@ -25,8 +25,9 @@ namespace Kata
 
             var negs = nums.Where(x => x < 0);
             if (negs.Any()) throw new Exception($"negatives not allowed: {string.Join(", ",negs)}");
-            
-            return nums.Sum();
+
+            var validNums = nums.Where(x => x < 1001);
+            return validNums.Sum();
         }
     }
 }
