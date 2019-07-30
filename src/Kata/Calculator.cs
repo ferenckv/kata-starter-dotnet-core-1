@@ -18,7 +18,13 @@ namespace Kata
             {
                 var parts = userInput.Split("\n");
                 input = parts[1];
-                separator = new[] {parts[0].Last().ToString()};
+                
+                var custom = parts[0]
+                    .Replace("//","")
+                    .Replace("[","")
+                    .Replace("]","");
+                
+                separator = new[] {custom};
             }
 
             var numbers = input.Split(separator, StringSplitOptions.None).Select(int.Parse).Where((x) => x < 1001)
