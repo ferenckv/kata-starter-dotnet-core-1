@@ -11,10 +11,7 @@ namespace Kata
 
             var numbers = userInput.Split(',').Select(int.Parse).ToArray();
 
-            if (numbers.Count() == 1)
-                return numbers[0];
-
-            return numbers[0] + numbers[1];
+            return numbers.Sum();
         }
     }
 }
