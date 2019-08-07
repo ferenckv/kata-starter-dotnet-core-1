@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Kata
@@ -19,6 +20,12 @@ namespace Kata
             }
 
             var numbers = input.Split(separators).Select(int.Parse).ToArray();
+            var negatives = numbers.Where(n => n < 0).ToArray();
+
+            if (negatives.Any())
+            {
+                throw new Exception($"negatives not allowed: {negatives.First()}");
+            }
             return numbers.Sum();
         }
     }
