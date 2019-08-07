@@ -10,16 +10,19 @@ namespace Kata
             if(string.IsNullOrEmpty(userInput))
                 return 0;
 
-            var separators = new char[] {',', '\n'};
+            var separators = new [] {",", "\n"};
             var input = userInput;
             if (userInput.StartsWith("//"))
             {
                 var parts = userInput.Split('\n');
                 input = parts[1];
-                separators = parts[0].Replace("//","").ToCharArray();
+                separators = new []{parts[0].Replace("//", "")
+                        .Replace("[", "")
+                        .Replace("]", "")
+                    };
             }
 
-            var numbers = input.Split(separators).Select(int.Parse).Where(n => n < 1001).ToArray();
+            var numbers = input.Split(separators, StringSplitOptions.None).Select(int.Parse).Where(n => n < 1001).ToArray();
             var negatives = numbers.Where(n => n < 0).ToArray();
 
             if (negatives.Any())
