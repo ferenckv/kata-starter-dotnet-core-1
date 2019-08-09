@@ -25,7 +25,9 @@ namespace Kata
                 input = inputParts.Last();
             }
             
-            var array = input.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
+            var array = input.Split(delimiters, StringSplitOptions.None).Select(int.Parse)
+                .Where(x=> x<1001)
+                .ToArray();
 
             var negatives = array.Where(x => x < 0).ToArray();
             if (negatives.Any())
