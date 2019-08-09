@@ -12,10 +12,8 @@ namespace Kata
             }
 
             var array = userInput.Split(",").Select(int.Parse).ToArray();
-            if (array.Length == 1)
-                return array.First();
-            
-            return array.First() + array.Last();
+
+            return array.Sum();
         }
     }
 }
