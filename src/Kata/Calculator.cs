@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Kata
@@ -11,7 +12,8 @@ namespace Kata
                 return 0;
             }
 
-            var array = userInput.Split(",").Select(int.Parse).ToArray();
+            var array = userInput.Split(new []{",", "\n"}, StringSplitOptions.None).Select(int.Parse).ToArray();
+            
 
             return array.Sum();
         }
