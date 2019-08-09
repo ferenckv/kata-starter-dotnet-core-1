@@ -26,7 +26,12 @@ namespace Kata
             }
             
             var array = input.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
-            
+
+            var negatives = array.Where(x => x < 0).ToArray();
+            if (negatives.Any())
+            {
+                throw new Exception($"negatives not allowed: {negatives.First()}");
+            }
 
             return array.Sum();
         }
