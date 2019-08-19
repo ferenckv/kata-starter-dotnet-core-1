@@ -20,7 +20,7 @@ namespace Kata
                 separator = new[] {parts[0].Replace("//", "")};
 
             }
-            var numbers = userInput.Split(separator, StringSplitOptions.None).Select(int.Parse).ToArray();
+            var numbers = userInput.Split(separator, StringSplitOptions.None).Select(int.Parse).Where(n => n < 1001).ToArray();
 
             var negatives = numbers.Where(n => n < 0).ToArray();
 
