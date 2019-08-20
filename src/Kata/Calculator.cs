@@ -10,7 +10,18 @@ namespace Kata
             if (string.IsNullOrEmpty(s))
                 return 0;
 
-            var numbers = s.Split(new[]{",", "\n"}, StringSplitOptions.None).Select(int.Parse).ToArray();
+            var separators = new[]{",", "\n"};
+            var userInput = s;
+
+            if (userInput.StartsWith("//"))
+            {
+                var parts = userInput.Split('\n');
+
+                separators = new[] {parts.First().Replace("//", "")};
+                userInput = parts.Last();
+            }
+
+            var numbers = userInput.Split(separators, StringSplitOptions.None).Select(int.Parse).ToArray();
             return numbers.Sum();
         }
     }
