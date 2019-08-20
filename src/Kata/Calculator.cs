@@ -5,37 +5,68 @@ namespace Kata
 {
     public class Calculator
     {
-        public int Add(string  s = "")
+        public int Add(string  userInput = "0")
         {
-            if (string.IsNullOrEmpty(s))
-                return 0;
+            var stringOfNumbers = GetStringOfNumbers(userInput);
+            var delimiters = GetDelimiters(userInput);
 
-            var separators = new[]{",", "\n"};
-            var userInput = s;
+            var numbers = GetValidNumbers(stringOfNumbers, delimiters);
 
-            if (userInput.StartsWith("//"))
+            ValidateNegatives(numbers);
+            return numbers.Sum();
+        }
+
+        static string GetStringOfNumbers(string userInput)
+        {
+            if (HasCustomDelimiters(userInput))
             {
-                var parts = userInput.Split('\n');
-
-                separators = new[]
-                {
-                    parts.First().Replace("//", "")
-                        .Replace("[", "")
-                        .Replace("]", "")
-                };
-                userInput = parts.Last();
+                return SplitCustomDelimiterParts(userInput).Last();
             }
 
-            var numbers = userInput.Split(separators, StringSplitOptions.None).Select(int.Parse)
-                .Where(x=> x<=1000)
-                .ToArray();
+            return userInput;
+        }
 
-            var negatives = numbers.Where(x => x < 0);
+        static string[] GetDelimiters(string originalUserInput)
+        {
+            var separators = new[] {",", "\n"};
+
+            if (HasCustomDelimiters(originalUserInput))
+            {
+                separators = SplitCustomDelimiterParts(originalUserInput)
+                    .First()
+                    .Replace("//", "")
+                    .Replace("[", "")
+                    .Split(']');
+            }
+
+            return separators;
+        }
+
+        static string[] SplitCustomDelimiterParts(string originalUserInput)
+        {
+            return originalUserInput.Split('\n');
+        }
+
+        static bool HasCustomDelimiters(string userInput)
+        {
+            return userInput.StartsWith("//");
+        }
+
+        static int[] GetValidNumbers(string userInput, string[] separators)
+        {
+            var numbers = userInput.Split(separators, StringSplitOptions.None).Select(int.Parse)
+                .Where(x => x <= 1000)
+                .ToArray();
+            return numbers;
+        }
+
+        static void ValidateNegatives(int[] numbers)
+        {
+            var negatives = numbers.Where(x => x < 0).ToArray();
             if (negatives.Any())
             {
-                throw  new Exception($"negatives not allowed: {string.Join(", ", negatives)}");
+                throw new Exception($"negatives not allowed: {string.Join(", ", negatives)}");
             }
-            return numbers.Sum();
         }
     }
 }
