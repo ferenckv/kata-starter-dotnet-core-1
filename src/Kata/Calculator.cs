@@ -9,7 +9,7 @@ namespace Kata
             if (string.IsNullOrEmpty(s))
                 return 0;
 
-            var numbers = s.Split(',').Select(int.Parse).ToArray();
+            var numbers = s.Split(new []{ ',', '\n' }).Select(int.Parse).ToArray();
 
             return numbers.Sum();
         }
