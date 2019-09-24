@@ -2,11 +2,7 @@ import {Car} from "./Car";
 import {Motorcycle} from "./Motorcycle";
 import {Bus} from "./Bus";
 import {Helicopter} from "./Helicopter";
-
-interface IVehicleConfig {
-    spaces: number;
-    basePrice: number;
-}
+import {IVehicleConfig} from "./IVehicleConfig";
 
 export class ParkingLot {
     constructor(public spaces: number) {
