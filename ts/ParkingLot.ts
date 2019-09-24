@@ -5,7 +5,7 @@ import {Helicopter} from "./Helicopter";
 
 interface IVehicleConfig {
     spaces: number;
-    price: number;
+    basePrice: number;
 }
 
 export class ParkingLot {
@@ -19,19 +19,18 @@ export class ParkingLot {
         // return calculator.calculate();
         
         function getVehicleConfig(vehicle: Vehicle) : IVehicleConfig  {
-            if(vehicle instanceof Car){
-                return { spaces: 1, price: 5 };
+            switch(vehicle.constructor){
+                case Car:
+                    return { spaces: 1, basePrice: 5 };
+                case Motorcycle:
+                    return { spaces: .5, basePrice: 3 };
+                case Bus:
+                    return { spaces: 2, basePrice: 9};
+                case Helicopter: 
+                    return { spaces: 8, basePrice: 35};
+                default:
+                    return { spaces: 0, basePrice: 0 };                    
             }
-            if(vehicle instanceof Motorcycle){
-                return { spaces: .5, price: 3 };
-            }
-            if(vehicle instanceof Bus){
-                return { spaces: 2, price: 9};
-            }
-            if(vehicle instanceof Helicopter){
-                return { spaces: 8, price: 35};
-            }
-            return { spaces: 0, price: 0 };
         }
 
         const config = getVehicleConfig(vehicle);
@@ -39,7 +38,7 @@ export class ParkingLot {
         if (this.spaces < config.spaces) throw new Error("rejected");
 
         this.spaces -= config.spaces;
-        let total = config.price * durationDays;
+        let total = config.basePrice * durationDays;
 
         if(durationDays >= 6){
             total = total * .7;

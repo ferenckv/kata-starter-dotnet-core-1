@@ -12,25 +12,24 @@ class ParkingLot {
         // const calculator = priceCalculatorFactory.create(vehicle, durationDays);
         // return calculator.calculate();
         function getVehicleConfig(vehicle) {
-            if (vehicle instanceof Car_1.Car) {
-                return { spaces: 1, price: 5 };
+            switch (vehicle.constructor) {
+                case Car_1.Car:
+                    return { spaces: 1, basePrice: 5 };
+                case Motorcycle_1.Motorcycle:
+                    return { spaces: .5, basePrice: 3 };
+                case Bus_1.Bus:
+                    return { spaces: 2, basePrice: 9 };
+                case Helicopter_1.Helicopter:
+                    return { spaces: 8, basePrice: 35 };
+                default:
+                    return { spaces: 0, basePrice: 0 };
             }
-            if (vehicle instanceof Motorcycle_1.Motorcycle) {
-                return { spaces: .5, price: 3 };
-            }
-            if (vehicle instanceof Bus_1.Bus) {
-                return { spaces: 2, price: 9 };
-            }
-            if (vehicle instanceof Helicopter_1.Helicopter) {
-                return { spaces: 8, price: 35 };
-            }
-            return { spaces: 0, price: 0 };
         }
         const config = getVehicleConfig(vehicle);
         if (this.spaces < config.spaces)
             throw new Error("rejected");
         this.spaces -= config.spaces;
-        let total = config.price * durationDays;
+        let total = config.basePrice * durationDays;
         if (durationDays >= 6) {
             total = total * .7;
         }
