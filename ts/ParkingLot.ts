@@ -56,6 +56,10 @@ export class ParkingLot {
             total = total * 2;
         }
         
+        if(vehicle instanceof Bus && vehicle.isElectric && durationDays >= 10){
+            total = 20;
+        }
+        
         return total;
     }
 }

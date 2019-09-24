@@ -42,6 +42,9 @@ class ParkingLot {
         if (vehicle.sticker === "trump") {
             total = total * 2;
         }
+        if (vehicle instanceof Bus_1.Bus && vehicle.isElectric && durationDays >= 10) {
+            total = 20;
+        }
         return total;
     }
 }
