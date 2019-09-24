@@ -9,6 +9,13 @@ export class ParkingLot {
         this.spaces -= vehicle.spaces;
         let total = vehicle.normalPrice * durationDays;
 
+        if(durationDays >= 6){
+            total = total * .7;
+        }
+        else if(durationDays >= 3){
+            total = total * .8;
+        }
+        
         if (vehicle.isElectric) {
             total = total * .5;
         }

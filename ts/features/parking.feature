@@ -86,7 +86,8 @@ Feature: Parking Lot Charges for Parking
     When the vehicle stays for 2 days
     Then the driver is charged $70
     And the lot is left with 42 spaces
-    
+ 
+  @wip   
   Scenario: 20% discount for 3 or more days
     Given a parking lot with 50 spaces
     And a bus
@@ -94,6 +95,7 @@ Feature: Parking Lot Charges for Parking
     Then the driver is charged $28.80
     And the lot is left with 48 spaces
 
+  @wip
   Scenario: 30% discount for 6 days or more
     Given a parking lot with 50 spaces
     And a normal car

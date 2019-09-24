@@ -8,12 +8,6 @@ const helpers_1 = require("./helpers");
 const Motorcycle_1 = require("../../Motorcycle");
 const Bus_1 = require("../../Bus");
 const Helicopter_1 = require("../../Helicopter");
-cucumber_1.Before(function () {
-    this.lot = false;
-    this.vehicle = false;
-    this.charged = false;
-    this.error = false;
-});
 cucumber_1.Given(/^a parking lot with (\d+) spaces$/, function (spaces) {
     this.lot = new ParkingLot_1.ParkingLot(spaces);
 });

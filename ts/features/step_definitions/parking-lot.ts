@@ -7,13 +7,6 @@ import {Motorcycle} from "../../Motorcycle";
 import {Bus} from "../../Bus";
 import {Helicopter} from "../../Helicopter";
 
-Before(function() {
-    this.lot = false;
-    this.vehicle = false;
-    this.charged = false;
-    this.error = false;
-});
-
 Given(/^a parking lot with (\d+) spaces$/, function (spaces: number) {
     this.lot = new ParkingLot(spaces);
 });
