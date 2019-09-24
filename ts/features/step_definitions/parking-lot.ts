@@ -32,14 +32,12 @@ Then(/^the car is rejected$/, function () {
 Given(/^an electric car$/, function () {
     this.vehicle = new Car(true);
 });
-
 Given(/^a motorcycle$/, function () {
     this.vehicle = new Motorcycle();
 });
 Given(/^the car has a trump sticker$/, function () {
     this.vehicle = new Car(false, "trump");
 });
-
 Given(/^a bus$/, function () {
     this.vehicle = new Bus(false);
 });

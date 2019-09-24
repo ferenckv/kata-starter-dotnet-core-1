@@ -102,3 +102,17 @@ Feature: Parking Lot Charges for Parking
     When the vehicle stays for 8 days
     Then the driver is charged $28
     And the lot is left with 49 spaces
+    
+  @wip
+  Scenario: Electric buses that stay 10 or more days pay $20 flat fee
+    Given a parking lot with 50 spaces
+    And an electric bus
+    When the vehicle stays for 11 days
+    Then the driver is charged $20
+
+  @wip
+  Scenario: Electric buses that stay a lot more time still pay $20 flat fee
+    Given a parking lot with 50 spaces
+    And an electric bus
+    When the vehicle stays for 15 days
+    Then the driver is charged $20
