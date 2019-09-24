@@ -6,9 +6,15 @@ import {catchError} from "./helpers";
 import {Motorcycle} from "../../Motorcycle";
 import {Bus} from "../../Bus";
 import {Helicopter} from "../../Helicopter";
+import {IVehicleConfig} from "../../IVehicleConfig";
 
 Given(/^a parking lot with (\d+) spaces$/, function (spaces: number) {
-    this.lot = new ParkingLot(spaces);
+    const configs = new Map<string, IVehicleConfig>();
+    configs.set("Car", { spaces: 1, basePrice: 5 });
+    configs.set("Motorcycle", { spaces: .5, basePrice: 3 });
+    configs.set("Bus".toString(), { spaces: 2, basePrice: 9 });
+    configs.set("Helicopter".toString(), { spaces: 8, basePrice: 35 });
+    this.lot = new ParkingLot(spaces, configs);
 });
 Given(/^a normal car$/, function () {
     this.vehicle = new Car(false);
