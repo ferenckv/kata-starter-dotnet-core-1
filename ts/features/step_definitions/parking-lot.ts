@@ -14,7 +14,7 @@ Given(/^a parking lot with (\d+) spaces$/, function (spaces: number) {
     configs.set("Motorcycle", { spaces: .5, basePrice: 3 });
     configs.set("Bus".toString(), { spaces: 2, basePrice: 9 });
     configs.set("Helicopter".toString(), { spaces: 8, basePrice: 35 });
-    this.lot = new ParkingLot(spaces, configs);
+    this.lot = new ParkingLot(spaces, configs, [new LongTermParkingStrategy(), new ElectricVehicleStrategy()]);
 });
 Given(/^a normal car$/, function () {
     this.vehicle = new Car(false);
